@@ -4,5 +4,5 @@ services:
   - docker
 
 before_install:
-  - docker build -t avtandilko/prom-interfaces-exporter prom-interfaces-exporter
+  - docker build -t avtandilko/prom-interfaces-exporter .
   - docker run -d -p 9425:9425 -v /sys:/host/sys:ro --name prom-interfaces-exporter avtandilko/prom-interfaces-exporter
