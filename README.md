@@ -1,5 +1,9 @@
 # Prometheus interfaces exporter
 
+|             | status |
+|-------------|------------|
+| **master** | [![Build Status](https://travis-ci.org/Avtandilko/prom-interfaces-exporter.svg?branch=master)](https://travis-ci.org/Avtandilko/prom-interfaces-exporter) |
+
 ## Docker build
 ```
 git clone https://github.com/Avtandilko/prom-interfaces-exporter.git
