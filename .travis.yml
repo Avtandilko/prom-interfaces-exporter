@@ -1,11 +1,14 @@
-sudo: true
-
 jobs:
   include:
     - stage: build docker image
       script:
+      - echo "$DOCKER_PASSWORD" | docker login -u avtandilko --password-stdin
       - docker build -t avtandilko/prom-interfaces-exporter .
+      - docker push avtandilko/prom-interfaces-exporter
     - stage: test
       script: 
        - docker run -d -p 9425:9425 -v /sys:/host/sys:ro --name prom-interfaces-exporter avtandilko/prom-interfaces-exporter
        - curl localhost:9425/metrics
+env:
+  matrix:
+    secure: QRPdJnv7fwScS36w4tAuLthdX6YVYK6rNsLzBICFwJf8vRchc7oJk3lRW8uMXYefrxbOD7gYLXPimd7YYzYXUDysOfA7rNne8Z3qaKL4OZ3i/SAGjg7N24x/5LCawsNXEDssXZVjfYrNhm3O6g5PFAFtmfr0MpzzdUWVhbQnl/CrKxz8FezRRij2ODqU4IcY10i2SsV4zdpy+6ajCBzmuu99Kx2NFVi+jV3L/4d0Fbx0T0RwSH5apV/WgSIqn2q4EJh6cJcBavum4upM/aJ8e3zVsh75SHQnJwktZcy3Rq8B6b6xcXt5CAmAlZpvKeyOuBH2e4ru5mcZp+JXl5cxz532XnO/TYxIsVIfeCl9Jn6rHW4l9D9Upe1ISPfqI28k6qe0rg/idTU2k7tF358hUdbocbUCVLzFOJCwMsTG1C916xTjRNEIllGlXx4wsNZZbdvKInQf+cQgS6goqiMtTW3kz7ZYQaoZ6vHlnUE/K92aBbnSQMHpw7ONk+tik5aHPn+w7udMssoh2qCB63Z3T2JlPTDQoZIbQh2dFAVimCDa1iKOUEAIDqswbRItqhfaNWoH12BjNrLydBKtenLWCMRSNkg8CBukEtBb/1R8Cbmr1agzV2VhE9Tuh1sh2iLwcERSJBOk5vaeNcNXUtN+3R83he0HOIEnftFtb6TKGKc=
