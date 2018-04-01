@@ -1,9 +1,11 @@
-sudo: required
-language: python
+sudo: true
 
-services:
-  - docker
-
-before_install:
-  - docker build -t avtandilko/prom-interfaces-exporter .
-  - docker run -d -p 9425:9425 -v /sys:/host/sys:ro --name prom-interfaces-exporter avtandilko/prom-interfaces-exporter
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - docker build -t avtandilko/prom-interfaces-exporter .
+    - stage: test
+      script: 
+       - docker run -d -p 9425:9425 -v /sys:/host/sys:ro --name prom-interfaces-exporter avtandilko/prom-interfaces-exporter
+       - curl localhost:9425/metrics
