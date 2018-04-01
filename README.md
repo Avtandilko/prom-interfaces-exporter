@@ -1,4 +1,4 @@
-# prom-interfaces-exporter
+# Prometheus interfaces exporter
 
 ## Docker build
 ```
