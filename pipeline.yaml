@@ -20,9 +20,9 @@ spec:
             openshiftScale(namespace:'dev',deploymentConfig: 'welcome',replicaCount: '5')
           stage 'deployInQA'
             input 'Proceeed ?'
-            openshiftTag(namespace: 'dev', sourceStream: 'welcome',  sourceTag: 'latest', destinationStream: 'welcome', destinationTag: 'promoteToQA')
-            openshiftDeploy(namespace:'qa',deploymentConfig: 'welcome')
-            openshiftScale(namespace:'qa',deploymentConfig: 'welcome',replicaCount: '5')
+            openshiftTag(namespace: 'dev', sourceStream: 'welcome',  sourceTag: 'latest', destinationStream: 'welcome', destinationTag: 'promoteToTest')
+            openshiftDeploy(namespace:'test',deploymentConfig: 'welcome')
+            openshiftScale(namespace:'test',deploymentConfig: 'welcome',replicaCount: '5')
         }
   output:
   resources:
