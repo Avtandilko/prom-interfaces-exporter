@@ -1,0 +1,32 @@
+kind: DeploymentConfig
+apiVersion: v1
+metadata:
+  name: pie
+spec:
+  template: 
+    metadata:
+      labels:
+        name: pie
+    spec:
+      containers:
+        - name: pie
+          image: pie
+          ports:
+            - containerPort: 9425
+              protocol: TCP
+  replicas: 2
+  triggers:
+    - type: "ConfigChange" 
+    - type: "ImageChange" 
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - "helloworld"
+        from:
+          kind: "ImageStreamTag"
+          name: "pie:latest"
+  strategy: 
+    type: "Rolling"
+  paused: false 
+  revisionHistoryLimit: 2 
+  minReadySeconds: 0 
