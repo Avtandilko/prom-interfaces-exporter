@@ -24,10 +24,7 @@ def get_interface_names():
     try:
         stdout = subprocess.check_output('ls {}'.format(CONTAINER_DIR), shell=True).decode()
     except subprocess.CalledProcessError:
-        try:
-            stdout = subprocess.check_output('ls {}'.format(HOST_DIR), shell=True).decode()
-        except:
-            stdout = 'Something goes wrong'
+        stdout = subprocess.check_output('ls {}'.format(HOST_DIR), shell=True).decode()
     for interface in stdout.split('\n'):
         if interface is not '':
             interfaces.update({interface: ''})
