@@ -12,7 +12,7 @@ kind: BuildConfig
 metadata:
   labels:
     app: pie
-  name: pie
+  name: pie-build
 spec:
   resources: {}
   source:
