@@ -1,0 +1,12 @@
+  apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: pie
+  name: pie
+spec:
+  source:
+    git:
+      uri: https://github.com/Avtandilko/prom-interfaces-exporter
+  strategy:
+    jenkinsPipelineStrategy:
