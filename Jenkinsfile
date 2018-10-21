@@ -1,22 +1,25 @@
 pipeline {
     agent any
+    def appName="${NAME}"
 
     stages {
         stage('Build in dev environment') {
             steps {
                 script {
                     openshift.withProject( 'dev' ) {
-                        def pie = openshift.newApp( 'https://github.com/Avtandilko/prom-interfaces-exporter.git' )
-                        pie.describe()
-                        //def bc = pie.narrow( 'bc' )
-                        //def buildSelector = bc.startBuild()
+                        def bld = openshift.startBuild("${appName}"
                     }
                 }
             }
         }
-        stage('stage-2') {
-            steps {
-                echo 'Deploy'
+        stage('Run tests') {
+            parallel {
+                steps {
+                    echo 'Test 1'
+                }
+                steps {
+                    echo 'Test 2'
+                }
             }
         }
     }

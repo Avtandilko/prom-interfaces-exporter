@@ -1,4 +1,4 @@
-  apiVersion: v1
+apiVersion: v1
 kind: BuildConfig
 metadata:
   labels:
@@ -10,3 +10,4 @@ spec:
       uri: https://github.com/Avtandilko/prom-interfaces-exporter
   strategy:
     jenkinsPipelineStrategy:
+      jenkinsfilePath:
