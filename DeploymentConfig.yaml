@@ -16,17 +16,18 @@ spec:
               protocol: TCP
   replicas: 2
   triggers:
-    - type: "ConfigChange" 
-    - type: "ImageChange" 
+    - type: 'ConfigChange'
+    - type: 'ImageChange'
       imageChangeParams:
         automatic: true
         containerNames:
-          - "helloworld"
+          - 'pie'
         from:
-          kind: "ImageStreamTag"
-          name: "pie:latest"
+          kind: 'ImageStreamTag'
+          name: 'pie:latest'
+          namespace: dev
   strategy: 
-    type: "Rolling"
+    type: 'Rolling'
   paused: false 
   revisionHistoryLimit: 2 
   minReadySeconds: 0 
