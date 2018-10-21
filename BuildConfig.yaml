@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: pie
+  name: pie
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: pie:latest
+  resources: {}
+  source:
+    git:
+      ref: master
+      uri: https://github.com/Avtandilko/prom-interfaces-exporter.git
+    contextDir: /src/
+    type: Git
+  strategy:
+    dockerStrategy:
+      dockerfilePath: Dockerfile
