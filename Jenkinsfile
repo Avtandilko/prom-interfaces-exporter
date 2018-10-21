@@ -7,7 +7,7 @@ pipeline {
             steps {
                 script {
                     openshift.withProject( 'dev' ) {
-                        def bld = openshift.startBuild("${appName}"
+                        def bld = openshift.startBuild("${appName}")
                     }
                 }
             }
