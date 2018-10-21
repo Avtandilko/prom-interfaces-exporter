@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('Build in dev environment') {
             steps {
-                openshiftBuild(namespace: 'dev', buildConfig: 'pie', showBuildLogs: 'true')
+                openshiftBuild(namespace: 'dev', bldCfg: 'pie', showBuildLogs: 'true')
             }
         }
         stage('Deploy to dev environment') {
             steps {
-                openshiftDeploy(namespace: 'dev', deploymentConfig: 'pie')
+                openshiftDeploy(namespace: 'dev', depCfg: 'pie')
             }
         }
         stage('Deploy') {
