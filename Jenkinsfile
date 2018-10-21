@@ -6,7 +6,10 @@ pipeline {
             steps {
                 script {
                     openshift.withProject( 'dev' ) {
-                        echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
+                        def pie = openshift.newApp( 'https://github.com/Avtandilko/prom-interfaces-exporter.git' )
+                        pie.describe()
+                        //def bc = pie.narrow( 'bc' )
+                        //def buildSelector = bc.startBuild()
                     }
                 }
             }
