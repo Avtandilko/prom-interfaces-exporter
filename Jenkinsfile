@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     openshift.withProject( 'dev' ) {
-                        openshift.create('https://github.com/Avtandilko/prom-interfaces-exporter.git')
+                        echo "Hello from project ${openshift.project()} in cluster ${openshift.cluster()}"
                     }
                 }
             }
