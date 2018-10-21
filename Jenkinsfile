@@ -15,11 +15,13 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to test environment') {
+        stage('Deploy to stage environment') {
             steps {
                 script {
-                    def dc = openshift.selector('dc', 'pie:latest')
-                    dc.rollout().status()
+                    openshift.withProject( 'stage' ) {
+                        def dc = openshift.selector('dc', 'pie:latest')
+                        dc.rollout().status()
+                    }
                 }
             }
         }
