@@ -1,8 +1,8 @@
 FROM python:3.6.4-alpine
 
-ENV APP_FILE /prom-interfaces-exporter/prom-interfaces-exporter.py
+ENV APP_FILE app/prom-interfaces-exporter.py
 
-RUN mkdir /prom-interfaces-exporter
-COPY prom-interfaces-exporter.py /prom-interfaces-exporter/
+RUN mkdir /app
+COPY src/prom-interfaces-exporter.py /app/
 EXPOSE 9425
-ENTRYPOINT ["sh", "-c", "python /prom-interfaces-exporter/prom-interfaces-exporter.py"]
+ENTRYPOINT ["sh", "-c", "python /app/prom-interfaces-exporter.py"]

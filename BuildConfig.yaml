@@ -3,19 +3,19 @@ kind: BuildConfig
 metadata:
   labels:
     app: pie
-  name: pie
+  name: manual
 spec:
-  output:
-    to:
-      kind: ImageStreamTag
-      name: pie:latest
   resources: {}
   source:
     git:
       ref: master
-      uri: https://github.com/Avtandilko/prom-interfaces-exporter.git
-    contextDir: /src/
+      uri: https://github.com/Avtandilko/prom-interfaces-exporter
+    contextDir: /
     type: Git
+  output:
+    to:
+      kind: ImageStreamTag
+      name: pie:latest
   strategy:
     dockerStrategy:
       dockerfilePath: Dockerfile
