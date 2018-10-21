@@ -5,7 +5,9 @@ pipeline {
         stage('Build in dev environment') {
             steps {
                 script {
-                    openshift.create('https://github.com/Avtandilko/prom-interfaces-exporter.git')
+                    openshift.withProject( 'dev' ) {
+                        openshift.create('https://github.com/Avtandilko/prom-interfaces-exporter.git')
+                    }
                 }
             }
         }
