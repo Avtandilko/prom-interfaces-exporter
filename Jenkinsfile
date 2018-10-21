@@ -6,8 +6,11 @@ pipeline {
             steps {
                 script {
                     openshift.withProject( 'dev' ) {
-                        sh "oc create -f BuildConfig.yaml"
                         def bld = openshift.startBuild("pie")
+                        bld.untilEach {
+                          return it.object().status.phase == "Running"
+                        }
+                        bld.logs('-f') 
                     }
                 }
             }
