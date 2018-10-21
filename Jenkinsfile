@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build in dev environment') {
             steps {
-                echo 'Building..'
+                openshiftBuild(namespace: 'dev', buildConfig: 'pie', showBuildLogs: 'true')
             }
         }
-        stage('Test') {
+        stage('Deploy to dev environment') {
             steps {
-                echo 'Testing..'
+                openshiftDeploy(namespace: 'dev', deploymentConfig: 'pie')
             }
         }
         stage('Deploy') {
