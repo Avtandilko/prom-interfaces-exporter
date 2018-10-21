@@ -4,17 +4,12 @@ pipeline {
     stages {
         stage('Build in dev environment') {
             steps {
-                openshiftBuild(namespace: 'dev', bldCfg: 'pie', showBuildLogs: 'true')
+                openshift.create('https://github.com/Avtandilko/prom-interfaces-exporter.git')
             }
         }
-        stage('Deploy to dev environment') {
+        stage('stage-2') {
             steps {
-                openshiftDeploy(namespace: 'dev', depCfg: 'pie')
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                echo 'Deploy'
             }
         }
     }
