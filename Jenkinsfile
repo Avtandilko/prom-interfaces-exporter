@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     openshift.withProject( 'dev' ) {
-                        oc create -f BuildConfig.yaml
+                        sh "oc create -f BuildConfig.yaml"
                         def bld = openshift.startBuild("pie")
                     }
                 }
