@@ -1,13 +1,13 @@
 pipeline {
     agent any
-    def appName="${NAME}"
 
     stages {
         stage('Build in dev environment') {
             steps {
                 script {
                     openshift.withProject( 'dev' ) {
-                        def bld = openshift.startBuild("${appName}")
+                        oc create -f BuildConfig.yaml
+                        def bld = openshift.startBuild("pie")
                     }
                 }
             }
