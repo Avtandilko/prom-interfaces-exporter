@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     openshift.withProject( 'stage' ) {
-                        def dc = openshift.selector('dc', 'pie:latest')
+                        def dc = openshift.selector('dc', 'pie')
                         dc.rollout().status()
                     }
                 }
